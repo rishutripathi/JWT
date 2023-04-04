@@ -16,24 +16,7 @@ const userLogin=async (req,res)=>{
      return console.log("User does not exists, kindly route to /register");
     }
      
-    jwt.sign({user:user},process.env.secretKey,{expiresIn: '1h'},async (err,token)=>{
-           try {
-            if(!token)
-            throw new Error ("Some issue")
-            else{
-             console.log("Token generated successfully:",token);
-             console.log(`Token generated at ${new Date().getHours()}hr ${new Date().getMinutes()}min ${new Date().getSeconds()}s`);
-             await loginModel.updateOne({"userName":user.userName},{$set:{token:token}},{upsert:true});
-             console.log("Token successfully saved in DB");
-             let a=await loginModel.findOne({$and:[{userName:user.userName},{email:user.email}]},{password:0});
-             
-            }    
-           } catch (err) {
-             res.status(400).json({Message:"Failed to generate token",error: err});
-           }
-    });
-
-     setTimeout(()=>{res.redirect(307,'http://localhost:8001/');
+         setTimeout(()=>{res.redirect(307,'http://localhost:8001/');
              //status(200)
              //.json({User:a,
              // Message:"Hii" })},2000 );
