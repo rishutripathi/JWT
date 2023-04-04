@@ -11,6 +11,9 @@
     "type": "git",
     "url": "https://github.com/rishutripathi/JWT.git"
   },
+  "engines": {
+    "node": ">=18.10"
+  },
   "author": "RTRP",
   "license": "ISC",
   "bugs": {
