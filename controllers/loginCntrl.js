@@ -1,7 +1,6 @@
 const jwt=require('jsonwebtoken');
 require('dotenv').config();
 const loginModel=require('../config/schema.js');
-const homeRoute=require('../routes/homeRoute.js');
 const userLogin=async (req,res)=>{
 
     const user={

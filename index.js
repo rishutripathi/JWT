@@ -20,7 +20,8 @@ app.set('views', path.resolve(__dirname,'views'));
 
 const port= process.env.port || 8000;
 
-app.listen(port,(err)=>{if(err)
+app.listen(port, (err)=>{
+   if(err)
     return console.log("Some error occured in connecting to port", err);
     console.log(`App is listening on localhost:${port}`)
    
