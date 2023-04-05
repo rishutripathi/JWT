@@ -14,10 +14,11 @@ const verifyToken= (req,res,next)=>{
     try{
         token=req.body.token || req.headers['authorization'].split(" ")[1];     
         let decode=jwt.verify(token, process.env.secretKey);
-        console.log(decode);
+        if(!decode)
+        throw new Error ("Token can't be verified");
     } 
     catch (err) {
-        res.status(403).json({Message:"Invalid Token"});
+        res.status(403).json({Message:err.message});
     }
      next();
 }
