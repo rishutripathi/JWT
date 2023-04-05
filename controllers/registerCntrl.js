@@ -36,7 +36,6 @@ const userRegister=async (req,res)=>{
        await loginModel.updateOne({userName:userDtl.userName},{$set:{token:token}},{upsert:true});
        console.log("Token successfully saved in DB");
        await loginModel.findOne({$and:[{userName:userDtl.userName},{email:userDtl.email}]},{password:0});
-       console.log("Getting here too");
         });    
   };
 
