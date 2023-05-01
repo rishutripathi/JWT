@@ -6,7 +6,6 @@ exports.userLogout= async (req,res)=>{
     console.log("cookies$$$$$$",req.cookies);
     res.cookie(userq.username, req.cookies[userq.username],{maxAge:0});
     res.status(200).json({logOutStatus:"Logged out now"});
-    return "aaaaa"
     
 };
 
