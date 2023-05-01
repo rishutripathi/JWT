@@ -29,7 +29,20 @@ const userRegister=async (req,res)=>{
               });
         console.log("User details has been saved",await loginModel.findOne({userName:userDtl.userName}));
 
+<<<<<<< HEAD
      
+=======
+    jwt.sign({user:userDtl},process.env.secretKey,{expiresIn: '1h'},async (err,token)=>{
+      if (err) {
+       return res.status(400).json({Message:"Failed to generate token",error: err.message});
+     }
+       console.log("Token generated successfully: ",token);
+       console.log(`at ${new Date().getHours()}hr ${new Date().getMinutes()}min ${new Date().getSeconds()}s`);
+       await loginModel.updateOne({userName:userDtl.userName},{$set:{token:token}},{upsert:true});
+       console.log("Token successfully saved in DB");
+       await loginModel.findOne({$and:[{userName:userDtl.userName},{email:userDtl.email}]},{password:0});
+        });    
+>>>>>>> bca3bb0f8e23b0846097c6941414ee019fb12629
   };
 
 module.exports=userRegister;

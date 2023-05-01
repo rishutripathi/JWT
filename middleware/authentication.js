@@ -20,7 +20,7 @@ const verifyToken=async (req,res,next)=>{
         throw new Error ("Token can't be verified");
     } 
     catch (err) {
-        res.status(403).json({Message:err.message});
+        return res.status(403).json({Message:err.message});
     }
      next();
 }
