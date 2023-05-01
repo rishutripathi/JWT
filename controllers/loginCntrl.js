@@ -5,6 +5,7 @@ const loginModel=require('../config/schema.js');
 let token;
 
 let userFunc=async (req,res)=>{
+  
       let user={
      username:req.body.username,
      email:req.body.email,
@@ -33,18 +34,20 @@ const userLogin=async (req,res)=>{
   }
 
       
-  
-   jwt.sign(user,process.env.secretKey,{expiresIn: '30m'},async function zz(err,token){
-      if (err) {
-       return res.status(400).json({Message:"Failed to generate token",error: err.message});
-     }
+     try{
+
+       let token= jwt.sign(user,process.env.secretKey,{expiresIn: '30m'});
        console.log("Token generated successfully: ",token);
        console.log(`at ${new Date().getHours()}hr ${new Date().getMinutes()}min ${new Date().getSeconds()}s`);
        res.cookie(user.username,token,{maxAge:30*60*1000, httpOnly: true});
        console.log("Cookie",req.cookies[user.username]);
-       console.log("token11",token);
+
        return token;
-   });
-     console.log("token222",token);
+     }
+     catch(err){
+       return res.status(400).json({Message:"Failed to generate token",error: err.message});
+     }
+   
 }
+
 module.exports= {userLogin,userFunc};

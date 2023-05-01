@@ -1,10 +1,12 @@
-const loginModel= require('../config/schema.js');
-const user= require('../controllers/loginCntrl.js');
-const loginCntrl=require('../controllers/loginCntrl.js');
+const loginCntrl= require('../controllers/loginCntrl.js');
+exports.userLogout= async (req,res)=>{
 
-const userLogout=async(req,res)=>{
-    res.cookie("JWT",loginCntrl.token,{maxAge:0});
-    res.send("Logged out");
+    const userq=await loginCntrl.userFunc(req,res);
+    console.log("user!!!!!",userq);
+    console.log("cookies$$$$$$",req.cookies);
+    res.cookie(userq.username, req.cookies[userq.username],{maxAge:0});
+    res.status(200).json({logOutStatus:"Logged out now"});
+    return "aaaaa"
     
 };
-module.exports= userLogout;
+
