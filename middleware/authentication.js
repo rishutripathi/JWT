@@ -1,9 +1,12 @@
-const jwt= require('jsonwebtoken');
+const jwt= require('jsonwebtoken'); 
+const loginCntrl= require('../controllers/loginCntrl.js');
+const loginModel= require('../config/schema.js')
 require('dotenv').config();
 let token;
-const verifyToken= (req,res,next)=>{
+const verifyToken=async (req,res,next)=>{
+  
       try {
-        token=req.body.token || req.headers['authorization'].split(" ")[1];     
+        token=req.cookies || req.headers['authorization'].split(" ")[1];     
         if(!token)
         throw new Error;
       }
@@ -12,8 +15,7 @@ const verifyToken= (req,res,next)=>{
         
     }
     try{
-        token=req.body.token || req.headers['authorization'].split(" ")[1];     
-        let decode=jwt.verify(token, process.env.secretKey);
+        let decode=jwt.verify(req.cookies, process.env.secretKey);
         if(!decode)
         throw new Error ("Token can't be verified");
     } 
