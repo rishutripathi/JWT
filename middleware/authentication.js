@@ -6,7 +6,7 @@ let token;
 const verifyToken=async (req,res,next)=>{
 
   let user=await loginCntrl.userFunc(req,res);
-  console.log("############",user);
+  console.log("############a",user);
       try {
         token=req.cookies[user.username] || req.headers['authorization'].split(" ")[1];     
         if(!token)
