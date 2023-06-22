@@ -5,6 +5,6 @@ router.use(bodyParser.json());
 const logoutCntrl= require('../controllers/logoutCntrl.js');
 
 
-router.post('/logout',logoutCntrl.userLogout);
+router.post('/logout',logoutCntrl);
 
 module.exports=router;

@@ -1,5 +1,5 @@
 const loginCntrl= require('../controllers/loginCntrl.js');
-exports.userLogout= async (req,res)=>{
+let userLogout= async (req,res)=>{
 
     const userq=await loginCntrl.userFunc(req,res);
     console.log("user!!!!!",userq);
@@ -8,4 +8,4 @@ exports.userLogout= async (req,res)=>{
     res.status(200).json({logOutStatus:"Logged out now"});
     
 };
-
+module.exports=userLogout

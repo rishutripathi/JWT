@@ -29,8 +29,9 @@ const userLogin=async (req,res)=>{
         return res.status(401).json({Message:"Incorrect Password"});  }
 
     else{ 
-         setTimeout(()=>{res.redirect(307,'http://localhost:8001/home');
-                        },2000); 
+         res.set({'a': 'text/hl'}); 
+         setTimeout(()=>{res.redirect(307,'http://localhost:8001/home')
+                        },2000);
   }
 
       
