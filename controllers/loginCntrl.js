@@ -29,7 +29,7 @@ const userLogin=async (req,res)=>{
         return res.status(401).json({Message:"Incorrect Password"});  }
 
     else{ 
-         res.set({'a': 'text/hl'})
+         res.set({'a original':'text/hl'})
          setTimeout(()=>{res.redirect(307,'http://localhost:8001/home')
                         },2000);
   }
