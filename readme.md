@@ -1,1 +1,0 @@
-Self explainatory JWT mechanism
